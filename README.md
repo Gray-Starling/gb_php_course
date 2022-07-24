@@ -1,1 +1,1 @@
-## Geek Brains PHP course!
+## Geek Brains PHP course
