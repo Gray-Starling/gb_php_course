@@ -2,11 +2,11 @@
 
 class TaskProvider
 {
-  private ?array $tasksList;
+  private array $tasksList;
 
   function __construct()
   {
-    $this->tasksList = $_SESSION["task"];
+    $this->tasksList = $_SESSION["task"] ?? [];
   }
 
   public function getTasksList()

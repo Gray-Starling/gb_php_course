@@ -5,6 +5,7 @@ include_once './model/Task.php';
 session_start();
 
 $taskProvider = new TaskProvider();
+$tasks = $taskProvider->getTasksList();
 
 if (isset($_GET["action"]) && $_GET["action"] === "add") {
   $taskDescription = htmlspecialchars(strip_tags($_POST["taskName"]));

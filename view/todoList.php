@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <?php include_once "./controller/UserStatusController.php" ?>
+  <?php include_once  "./view/header.php" ?>
   <a href="/">На главную</a>
   <br>
   <br>
@@ -19,11 +19,16 @@
   </form>
   <br>
   <br>
-  <?php if (isset($_SESSION["task"])) : ?>
+  <?php if (isset($tasks)) : ?>
     <?php foreach ($undoneList as $key => $item) : ?>
-
-      * <?= $item->getDescription() ?> <a href="/?controller=tasks&action=del&key=<?= $key ?>">Завершена</a> <br>
-
+      <div class="todos border">
+        <div>
+          * <?= $item->getDescription() ?>
+        </div>
+        <div>
+          <a href="/?controller=tasks&action=del&key=<?= $key ?>">Удалить</a> <br>
+        </div>
+      </div>
     <?php endforeach ?>
   <?php endif ?>
 </body>

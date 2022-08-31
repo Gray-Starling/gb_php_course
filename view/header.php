@@ -1,3 +1,7 @@
+<?php
+require_once "./controller/UserStatusController.php"
+?>
+
 <header class="header">
   <div class="logo">Logo</div>
   <?php if (is_null($name)) : ?>
