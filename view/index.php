@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <?php include_once './controller/UserStatusController.php' ?>
+  <?php include_once  "./view/header.php" ?>
   <hr>
 
   <?php if (is_null($username)) : ?>

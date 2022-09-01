@@ -28,7 +28,7 @@
 </head>
 
 <body>
-  <?php include_once './controller/UserStatusController.php' ?>
+  <?php include_once  "./view/header.php" ?>
   <div class="container text-center">
     <div class="row">
       <form method="post" class="sign-in-form mt-5 mt-md-5 col-lg-4 col-md-5 col-sm-8">
