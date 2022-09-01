@@ -6,12 +6,15 @@ require_once 'model/UserProvider.php';
 session_start();
 
 $error = null;
+$username = null;
+
+if (isset($_SESSION['username'])) {
+  $username = $_SESSION['username']->getUsername();
+}
 
 if (isset($_POST['username'], $_POST['password'])) {
   $username = htmlspecialchars(strip_tags($_POST["username"]));
   $password = htmlspecialchars(strip_tags($_POST["password"]));
-
-  // ['username' => $username, 'password' => $password] = $_POST;
   $userProvider = new UserProvider();
   $user = $userProvider->getByUsernameAndPassword($username, $password);
   if ($user === null) {
@@ -23,21 +26,12 @@ if (isset($_POST['username'], $_POST['password'])) {
   }
 }
 
-
-// $name = null;
-// if (isset($_POST["username"]) && isset($_POST["password"])) {
-//   $login = htmlspecialchars(strip_tags($_POST["username"]));
-//   $pass = htmlspecialchars(strip_tags($_POST["password"]));
-
-//   if ($login === "admin" && $pass === "123") {
-//     $_SESSION["user"]["username"] = $login;
-//     $name = $login;
-//     header("Location: index.php");
-//     die();
-//   } else {
-//     echo "<script type='text/javascript'>alert('Не верные данные');</script>";
-//   }
-// }
-
+if (isset($_GET["action"]) && $_GET["action"] === "logout") {
+  unset($_SESSION["username"]);
+  $username =  null;
+  session_destroy();
+  header("Location: index.php");
+  die();
+}
 
 include_once "./view/signin.php";

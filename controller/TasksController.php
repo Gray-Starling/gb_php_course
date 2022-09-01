@@ -1,11 +1,17 @@
 <?php
-include_once './model/TaskProvider.php';
-include_once './model/Task.php';
+require_once 'model/Task.php';
+require_once 'model/TaskProvider.php';
+require_once 'model/User.php';
 
 session_start();
 
 $taskProvider = new TaskProvider();
 $tasks = $taskProvider->getTasksList();
+$username = null;
+
+if (isset($_SESSION['username'])) {
+  $username = $_SESSION['username']->getUsername();
+}
 
 if (isset($_GET["action"]) && $_GET["action"] === "add") {
   $taskDescription = htmlspecialchars(strip_tags($_POST["taskName"]));

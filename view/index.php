@@ -9,8 +9,6 @@
 
 <body>
   <?php include_once  "./view/header.php" ?>
-  <hr>
-
   <?php if (is_null($username)) : ?>
     <div>Вы не авторизованны, <a href="/?controller=security">Войдите</a></div>
   <?php else : ?>
