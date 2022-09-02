@@ -3,11 +3,12 @@
 class Task
 {
   private string $description;
-  private bool $isDone = false;
+  private bool $isDone;
 
-  public function __construct(string $description)
+  public function __construct(string $description = '', bool $isDone = false)
   {
     $this->description = $description;
+    $this->isDone = $isDone;
   }
 
   public function getDescription(): string

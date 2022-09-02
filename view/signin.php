@@ -42,6 +42,7 @@
         <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required="">
         <button class="w-75 btn btn-lg btn-primary mt-1" type="submit">Войти</button>
         <div class="mt-3">
+          <a href="/?controller=registration">Регистрация</a><br>
           <a href="/">Назад</a>
         </div>
       </form>

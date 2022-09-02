@@ -2,38 +2,43 @@
 
 class TaskProvider
 {
-  private array $tasksList;
 
-  function __construct()
-  {
-    $this->tasksList = $_SESSION["task"] ?? [];
-  }
+  private PDO $pdo;
 
-  public function getTasksList()
+  public function __construct(PDO $pdo)
   {
-    return $this->tasksList;
+    $this->pdo = $pdo;
   }
 
-  public function setTasksList(Task $task)
+  public function addTask(Task $task): bool
   {
-    $this->tasksList[] = $task;
-    $_SESSION["task"][] = $task;
+    $statement = $this->pdo->prepare(
+      'INSERT INTO tasks (description, isDone) VALUES (:description, :isDone)'
+    );
+
+    return $statement->execute([
+      'description' => $task->getDescription(),
+      'isDone' => "0"
+    ]);
   }
-  public function delTasksList(int $key)
-  {
-    unset($this->tasksList[$key]);
-    unset($_SESSION["task"][$key]);
-  }
+
   public function getUndoneList()
-  {
-    $tasksList = [];
+  { {
 
-    foreach ($this->tasksList as $key => $item) {
-
-      if (!$item->getIsDone()) {
-        $tasksList[$key] = $item;
-      }
+      $statement = $this->pdo->query('SELECT * FROM `tasks` WHERE isDone != 1');
+      $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
     }
-    return  $tasksList;
+  }
+
+  public function delTasksList(int $key): void
+  {
+    $statement = $this->pdo->prepare(
+      'UPDATE tasks SET isDone = 1 WHERE id = :id AND isDone != 1'
+    );
+
+    $statement->execute([
+      'id' => $key,
+    ]);
   }
 }

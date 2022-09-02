@@ -2,15 +2,36 @@
 
 class User
 {
-  private string $username;
+  private string $login;
+  private string $name;
 
-  public function __construct(string $username)
+  public function __construct(string $login, string $name = "не указанно")
   {
-    $this->username = $username;
+    $this->login = $login;
+    $this->name = $name;
   }
 
-  public function getUsername(): string
+  public function getName(): string
   {
-    return $this->username;
+    return $this->name;
+  }
+
+  public function setName(string $name): self
+  {
+    $this->name = $name;
+
+    return $this;
+  }
+
+  public function getLogin(): string
+  {
+    return $this->login;
+  }
+
+  public function setLogin(string $login): self
+  {
+    $this->login = $login;
+
+    return $this;
   }
 }

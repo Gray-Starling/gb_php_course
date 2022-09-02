@@ -13,20 +13,21 @@
   <a href="/">На главную</a>
   <br>
   <br>
-  <form method="POST" action="/?controller=tasks&action=add">
-    <input type="text" name="taskName">
+  <form action="/?controller=tasks&action=add" method="POST">
+    <input type="text" name="task" placeholder="Опишите новую задачу">
     <input type="submit" value="Добавить">
   </form>
   <br>
   <br>
-  <?php if (isset($tasks)) : ?>
+  <?php if (isset($undoneList)) : ?>
     <?php foreach ($undoneList as $key => $item) : ?>
       <div class="todos border">
+
         <div>
-          * <?= $item->getDescription() ?>
+          * <?= $item["description"] ?>
         </div>
         <div>
-          <a href="/?controller=tasks&action=del&key=<?= $key ?>">Удалить</a> <br>
+          <a href="/?controller=tasks&action=del&key=<?= $item["id"] ?>">Удалить</a> <br>
         </div>
       </div>
     <?php endforeach ?>

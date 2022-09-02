@@ -1,5 +1,6 @@
 <?php
 
+
 $controller = $_GET['controller'] ?? 'index';
 
 $routes = require './routes.php';
